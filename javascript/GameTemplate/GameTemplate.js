@@ -1,20 +1,24 @@
 var canvas, ctx, pause, gameTitle;
-var defaultWidth, defaultHeight, keystate, up=38, down=40, left=37, right=39, p=80, f=70, space=32;
+var defaultWidth, defaultHeight, keystate, up=38, down=40, left=37, right=39, p=80, f=70, space=32, enter=13;
 var bgColor, fullScreen, score, highScore;
 var heightScale, widthScale;
+var gpm, lm;
 
 function main(){
 	canvas=document.getElementById("gameCanvas");
 	ctx=canvas.getContext("2d");
 	window.addEventListener("resize", function(){if (window.innerWidth < defaultWidth || window.innerHeight < defaultHeight) setFullScreen();});
 
+	gpm = new GamePageManager();
+	lm = new LevelManager();
+
 	keystate = {};
 	document.addEventListener("keydown", function(evt) {
 		keystate[evt.keyCode] = true;
-		handleKeyInput(evt, true);
+		gpm.handleKeyInput(evt, true);
 	});
 	document.addEventListener("keyup", function(evt) {
-		handleKeyInput(evt, false);
+		gpm.handleKeyInput(evt, false);
 		delete keystate[evt.keyCode];
 	});
 
@@ -47,9 +51,9 @@ function play(){
 
 var gameLoop = function(){
 	if (!pause) {
-		update();
+		if(gpm.currentPage) gpm.currentPage.update();
 	}
-	draw();
+	if(gpm.currentPage) gpm.currentPage.draw();
 }
 
 function setFullScreen() {
@@ -83,6 +87,14 @@ function create2DArray(sizes){
 	var array = new Array(sizes[0]);
 	for(var i=0; i < sizes[0]; i++)	array[i] = (new Array(sizes[1]));
 	return array;
+}
+
+function toRadians(degrees){
+	return  degrees * Math.PI / 180;
+}
+
+function toDegrees(radians){
+	return radians * 180 / Math.PI;
 }
 
 function saveHighScore(){
