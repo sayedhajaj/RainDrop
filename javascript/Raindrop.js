@@ -15,8 +15,8 @@ Raindrop.prototype.update = function(){
 
 Raindrop.prototype.draw = function(){
     ctx.save();
-	ctx.translate(this.position.a, this.position.b);
-	ctx.rotate(this.angle * Math.PI/180);
+	//ctx.translate(this.position.a, this.position.b);
+	//ctx.rotate(this.angle * Math.PI/180);
     //ctx.scale(0.2, 0.2);
     ctx.drawImage(this.image, this.position.a, this.position.b);
 	ctx.restore();

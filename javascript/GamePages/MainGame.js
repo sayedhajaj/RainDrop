@@ -6,7 +6,7 @@ function MainGame(){
 MainGame.prototype = new Level();
 
 MainGame.prototype.init = function(){
-    highScore = getHighScore(this);
+    highScore = this.getHighScore();
     gameObjectBag = [];
     player = new Player(canvas.width/4, canvas.height/4, 0);
     ctx.fillStyle=this.bgColor;
@@ -55,4 +55,4 @@ MainGame.prototype.handleKeyInput = function(evt, keyup){
 
 	}
 
-}
+};

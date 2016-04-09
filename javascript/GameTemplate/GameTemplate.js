@@ -22,6 +22,35 @@ function main(){
 		delete keystate[evt.keyCode];
 	});
 
+	canvas.addEventListener('click', function(evt){
+		var x = evt.offsetX;
+		var y = evt.offsetY;
+		gpm.handleMouseClick(x, y);
+	});
+
+	canvas.addEventListener('mousemove', function(evt){
+		var x = evt.offsetX;
+		var y = evt.offsetY;
+		gpm.handleMouseMove(x, y);
+	});
+
+	canvas.addEventListener('touchstart', function(evt){
+		var x = evt.offsetX;
+		var y = evt.offsetY;
+		gpm.handleTouchClick(x, y);
+	});
+
+	canvas.addEventListener('touchmove', function(evt){
+		var touch = evt.touches[0];
+		var x = touch.offsetX;
+		var y = touch.offsetY;
+		gpm.handleTouchMove(x, y);
+	});
+
+
+
+
+
 	this.defaultWidth=canvas.width;
 	this.defaultHeight=canvas.height;
 	widthScale = 1;
@@ -68,8 +97,6 @@ function setFullScreen() {
 	widthScale = canvas.width/defaultWidth;
 	heightScale = canvas.height/defaultHeight;
 	ctx.scale(widthScale, heightScale);
-
-	ctx.fillStyle=bgColor;
 	fullScreen=true;
 }
 
@@ -80,7 +107,6 @@ function resize() {
 	widthScale = 1;
 	heightScale = 1;
 
-	ctx.fillStyle=bgColor;
 	fullScreen=false;
 }
 
@@ -96,23 +122,4 @@ function toRadians(degrees){
 
 function toDegrees(radians){
 	return radians * 180 / Math.PI;
-}
-
-function saveHighScore(gamePage){
-	console.log((gamePage || gpm.currentPage).score);
-	localStorage.setItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore", (gamePage || gpm.currentPage).score);
-}
-
-function getHighScore(gamePage) {
-	if (localStorage.getItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore")){
-		return localStorage.getItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore");
-	}
-	return 0;
-}
-
-function deleteHighScore(gamePage){
-	if (localStorage.getItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore")){
-		localStorage.removeItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore");
-	}
-
 }

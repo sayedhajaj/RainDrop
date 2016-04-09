@@ -25,6 +25,9 @@ MenuPage.prototype.handleKeyInput = function(evt, keyup){
 	}
 }
 
+MenuPage.prototype.handleMouseClick = function(x, y){ lm.setLevel(0);};
+MenuPage.prototype.handleTouchMove = function(x, y){handleMouseClick(x, y);};
+
 MenuPage.prototype.draw = function(){
     background.draw();
 }

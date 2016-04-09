@@ -8,6 +8,22 @@ GamePageManager.prototype.handleKeyInput = function(evt, keyup){
     if(this.currentPage) this.currentPage.handleKeyInput(evt, keyup);
 };
 
+GamePageManager.prototype.handleMouseClick = function(x, y){
+    if(this.currentPage) this.currentPage.handleMouseClick(x, y);
+};
+
+GamePageManager.prototype.handleMouseMove = function(x, y){
+    if(this.currentPage) this.currentPage.handleMouseMove(x, y);
+};
+
+GamePageManager.prototype.handleTouchClick = function(x, y){
+    if(this.currentPage) this.currentPage.handleTouchClick(x, y);
+};
+
+GamePageManager.prototype.handleTouchMove = function(x, y){
+    if(this.currentPage) this.currentPage.handleTouchMove(x, y);
+};
+
 GamePageManager.prototype.addPage = function (gamePage) {
     this.gamePages.push(gamePage);
 };
