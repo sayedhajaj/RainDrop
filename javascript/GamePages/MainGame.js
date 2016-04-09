@@ -1,4 +1,4 @@
-var player, background, highScore, gameObjectBag;
+var player, background, gameObjectBag;
 
 function MainGame(){
     Level.call(this);
@@ -6,10 +6,10 @@ function MainGame(){
 MainGame.prototype = new Level();
 
 MainGame.prototype.init = function(){
-    highScore = getHighScore();
+    highScore = getHighScore(this);
     gameObjectBag = [];
     player = new Player(canvas.width/4, canvas.height/4, 0);
-    ctx.fillStyle=bgColor;
+    ctx.fillStyle=this.bgColor;
     background = new Background("images/tempBg.jpg");
 };
 
@@ -18,7 +18,7 @@ MainGame.prototype.update = function(){
 }
 
 MainGame.prototype.draw = function(){
-    ctx.fillStyle = bgColor;
+    ctx.fillStyle = this.bgColor;
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	background.draw();
 
@@ -26,8 +26,8 @@ MainGame.prototype.draw = function(){
 
 	ctx.fillStyle="#fff";
 	ctx.font="bold 30px helvetica";
-	ctx.fillText("High Score: "+ Math.max(score, highScore), 10, 70);
-	ctx.fillText("Score: "+ score, 10, 30);
+	ctx.fillText("High Score: "+ Math.max(this.score, this.highScore), 10, 70);
+	ctx.fillText("Score: "+ this.score, 10, 30);
 
 	player.draw();
 

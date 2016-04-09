@@ -1,5 +1,5 @@
 function GamePage(){
-
+    this.bgColor = "";
 }
 
 GamePage.prototype.init = function(){

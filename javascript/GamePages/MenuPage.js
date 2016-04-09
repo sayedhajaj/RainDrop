@@ -24,3 +24,7 @@ MenuPage.prototype.handleKeyInput = function(evt, keyup){
 
 	}
 }
+
+MenuPage.prototype.draw = function(){
+    background.draw();
+}

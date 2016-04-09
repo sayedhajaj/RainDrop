@@ -1,6 +1,6 @@
-var canvas, ctx, pause, gameTitle;
+var canvas, ctx, gameTitle;
 var defaultWidth, defaultHeight, keystate, up=38, down=40, left=37, right=39, p=80, f=70, space=32, enter=13;
-var bgColor, fullScreen, score, highScore;
+var fullScreen;
 var heightScale, widthScale;
 var gpm, lm;
 
@@ -50,10 +50,11 @@ function play(){
 }
 
 var gameLoop = function(){
-	if (!pause) {
+	if (gpm.currentPage instanceof Level && !gpm.currentPage.pause) {
 		if(gpm.currentPage) gpm.currentPage.update();
 	}
 	if(gpm.currentPage) gpm.currentPage.draw();
+
 }
 
 function setFullScreen() {
@@ -97,11 +98,21 @@ function toDegrees(radians){
 	return radians * 180 / Math.PI;
 }
 
-function saveHighScore(){
-	localStorage.setItem(gameTitle + "highScore", score)
+function saveHighScore(gamePage){
+	console.log((gamePage || gpm.currentPage).score);
+	localStorage.setItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore", (gamePage || gpm.currentPage).score);
 }
 
-function getHighScore() {
-	if (localStorage.getItem(gameTitle + "highScore")) return localStorage.getItem(gameTitle + "highScore");
+function getHighScore(gamePage) {
+	if (localStorage.getItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore")){
+		return localStorage.getItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore");
+	}
 	return 0;
+}
+
+function deleteHighScore(gamePage){
+	if (localStorage.getItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore")){
+		localStorage.removeItem(gameTitle+(gamePage || gpm.currentPage).constructor.name + "highScore");
+	}
+
 }
