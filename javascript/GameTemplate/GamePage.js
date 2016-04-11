@@ -33,3 +33,7 @@ GamePage.prototype.handleTouchClick = function(x, y){
 GamePage.prototype.handleTouchMove = function(x, y){
 
 };
+
+GamePage.prototype.handleDeviceOrientation = function(x, y, z){
+
+};

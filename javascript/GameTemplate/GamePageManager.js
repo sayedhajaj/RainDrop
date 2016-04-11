@@ -24,6 +24,10 @@ GamePageManager.prototype.handleTouchMove = function(x, y){
     if(this.currentPage) this.currentPage.handleTouchMove(x, y);
 };
 
+GamePageManager.prototype.handleDeviceOrientation = function(x, y, z){
+    if(this.currentPage) this.currentPage.handleDeviceOrientation(x, y, z);
+}
+
 GamePageManager.prototype.addPage = function (gamePage) {
     this.gamePages.push(gamePage);
 };

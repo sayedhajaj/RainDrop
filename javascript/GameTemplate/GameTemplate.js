@@ -47,7 +47,9 @@ function main(){
 		gpm.handleTouchMove(x, y);
 	});
 
-
+	window.addEventListener('deviceorientation', function(evt){
+		gpm.handleDeviceOrientation(evt.gamma, evt.beta, evt.alpha);
+	});
 
 
 

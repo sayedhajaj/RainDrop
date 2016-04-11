@@ -5,7 +5,6 @@ MenuPage.prototype = new GamePage();
 
 MenuPage.prototype.handleKeyInput = function(evt, keyup){
 	if(keyup){
-		if (keystate[p]) pause= !pause;
 		if (keystate[f]) {
 			if(!fullScreen){
 				setFullScreen();

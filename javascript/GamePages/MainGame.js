@@ -36,7 +36,6 @@ MainGame.prototype.draw = function(){
 
 MainGame.prototype.handleKeyInput = function(evt, keyup){
 	if(keyup){
-		if (keystate[p]) pause= !pause;
 		if (keystate[f]) {
 			if(!fullScreen){
 				setFullScreen();
@@ -47,6 +46,7 @@ MainGame.prototype.handleKeyInput = function(evt, keyup){
 		if (keystate[space]) {
 			location.reload();
 		}
+        if (keystate[p]) this.pause= !this.pause;
 		if(keystate[left]) player.leftInput();
 		if(keystate[right]) player.rightInput();
 
@@ -55,4 +55,17 @@ MainGame.prototype.handleKeyInput = function(evt, keyup){
 
 	}
 
+};
+
+MainGame.prototype.handleMouseClick = function(x, y){
+    x <= canvas.width/2 ? player.leftInput() : player.rightInput();
+};
+
+MainGame.prototype.handleMouseMove = function(x, y) { MainGame.prototype.handleMouseClick(x, y); };
+MainGame.prototype.handleTouchClick = function(x, y) { MainGame.prototype.handleMouseClick(x, y); };
+MainGame.prototype.handleTouchMove = function(x, y) { MainGame.prototype.handleMouseClick(x, y); };
+
+MainGame.prototype.handleDeviceOrientation = function(x, y, z){
+        console.log(x);
+        x < 0 ? player.leftInput() : player.rightInput();
 };
