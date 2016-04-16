@@ -1,7 +1,6 @@
 function Level(x, y, imgNum){
     GamePage.call(this);
     this.score = 0;
-    this.pause = false;
     this.highScore = this.getHighScore();
 }
 Level.prototype = new GamePage();

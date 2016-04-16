@@ -2,7 +2,7 @@ function Raindrop(x, y, imgNum, height){
     this.position = new Vector(x, y);
     this.height = 10;
     this.angle=0;
-    this.angleSpeed = 2;
+    this.angleSpeed = 0;
     this.image = new Image();
     this.image.src = "images/tearImage"+(imgNum||0)+".png";
     this.image.onload = console.log(this.image.width+", "+this.image.height);

@@ -46,24 +46,32 @@ MainGame.prototype.handleKeyInput = function(evt, keyup){
 		if (keystate[space]) {
 			location.reload();
 		}
-        if (keystate[p]) this.pause= !this.pause;
+        if (keystate[p]) gpm.setPage(1);
 		if(keystate[left]) player.leftInput();
 		if(keystate[right]) player.rightInput();
 
 
 	} else {
-
+        if(keystate[right] || keystate[left]) player.stopInput();
 	}
 
 };
 
 MainGame.prototype.handleMouseClick = function(x, y){
+
+};
+
+MainGame.prototype.handleMouseDown = function(x, y){
     x <= canvas.width/2 ? player.leftInput() : player.rightInput();
 };
 
-MainGame.prototype.handleMouseMove = function(x, y) { MainGame.prototype.handleMouseClick(x, y); };
-MainGame.prototype.handleTouchClick = function(x, y) { MainGame.prototype.handleMouseClick(x, y); };
-MainGame.prototype.handleTouchMove = function(x, y) { MainGame.prototype.handleMouseClick(x, y); };
+MainGame.prototype.handleMouseUp = function(x, y){
+    player.stopInput();
+};
+
+//MainGame.prototype.handleMouseMove = function(x, y) { MainGame.prototype.handleMouseDown(x, y); };
+MainGame.prototype.handleTouchClick = function(x, y) { MainGame.prototype.handleMouseDown(x, y); };
+MainGame.prototype.handleTouchMove = function(x, y) { MainGame.prototype.handleMouseDown(x, y); };
 
 MainGame.prototype.handleDeviceOrientation = function(x, y, z){
         console.log(x);

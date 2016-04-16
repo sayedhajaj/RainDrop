@@ -18,6 +18,14 @@ GamePage.prototype.handleKeyInput = function(evt, keyup){
 
 };
 
+GamePage.prototype.handleMouseDown = function(x, y){
+
+};
+
+GamePage.prototype.handleMouseUp = function(x, y){
+
+};
+
 GamePage.prototype.handleMouseClick = function(x, y){
 
 };

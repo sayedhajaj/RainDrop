@@ -22,6 +22,18 @@ function main(){
 		delete keystate[evt.keyCode];
 	});
 
+	canvas.addEventListener('mousedown', function(evt){
+		var x = evt.offsetX;
+		var y = evt.offsetY;
+		gpm.handleMouseDown(x, y);
+	});
+
+	canvas.addEventListener('mouseup', function(evt){
+		var x = evt.offsetX;
+		var y = evt.offsetY;
+		gpm.handleMouseUp(x, y);
+	});
+
 	canvas.addEventListener('click', function(evt){
 		var x = evt.offsetX;
 		var y = evt.offsetY;
@@ -81,9 +93,7 @@ function play(){
 }
 
 var gameLoop = function(){
-	if (gpm.currentPage instanceof Level && !gpm.currentPage.pause) {
-		if(gpm.currentPage) gpm.currentPage.update();
-	}
+	if(gpm.currentPage) gpm.currentPage.update();
 	if(gpm.currentPage) gpm.currentPage.draw();
 
 }

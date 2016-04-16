@@ -8,6 +8,14 @@ GamePageManager.prototype.handleKeyInput = function(evt, keyup){
     if(this.currentPage) this.currentPage.handleKeyInput(evt, keyup);
 };
 
+GamePageManager.prototype.handleMouseDown = function(x, y){
+    if(this.currentPage) this.currentPage.handleMouseDown(x, y);
+};
+
+GamePageManager.prototype.handleMouseUp = function(x, y){
+    if(this.currentPage) this.currentPage.handleMouseUp(x, y);
+};
+
 GamePageManager.prototype.handleMouseClick = function(x, y){
     if(this.currentPage) this.currentPage.handleMouseClick(x, y);
 };
