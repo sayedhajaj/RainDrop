@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="mobile-web-app-capable" content="yes">
+
+        <title>Raindrop - deluge</title>
+
+		<script src="javascript/GameTemplate/GameTemplate.js"></script>
+
+		<script src="javascript/GameTemplate/Maths/Vector2D.js"></script>
+        <script src="javascript/GameTemplate/Maths/Vector3D.js"></script>
+		<script src="javascript/GameTemplate/Maths/Matrix2D.js"></script>
+		<script src="javascript/GameTemplate/Maths/Matrix3D.js"></script>
+
+        <script src ="javascript/GameTemplate/GamePage/GamePage.js"></script>
+		<script src ="javascript/GameTemplate/GamePage/Level.js"></script>
+		<script src ="javascript/GameTemplate/GamePage/GamePageManager.js"></script>
+		<script src ="javascript/GameTemplate/GamePage/LevelManager.js"></script>
+
+		<script src ="javascript/GameTemplate/GameObjects/Camera.js"></script>
+		<script src ="javascript/GameTemplate/GameObjects/GameObject.js"></script>
+		<script src ="javascript/GameTemplate/GameObjects/Sprite.js"></script>
+		<script src ="javascript/GameTemplate/GameObjects/Animation.js"></script>
+
+        <script src="javascript/RainDropGame.js"></script>
+
+        <script src ="javascript/GameObjects/Sprites/Player.js"></script>
+
+        <script src ="javascript/GameObjects/Sprites/PlayerStates/PlayerState.js"></script>
+
+        <script src="javascript/GameObjects/Obstacles/Crack.js"></script>
+        <script src="javascript/GameObjects/Obstacles/ObstacleSpawner.js"></script>
+
+
+        <script src="javascript/GamePages/MainGame.js"></script>
+        <script src="javascript/GamePages/HomePage.js"></script>
+        <script src="javascript/GamePages/PausePage.js"></script>
+        <script src="javascript/GamePages/GameOverPage.js"></script>
+
+        <style>
+        * {
+            margin:0px !important;
+        }
+
+        canvas {
+            user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-drag: none;
+        }
+        </style>
+    </head>
+    <body>
+        <canvas width="360" height="480" id="raindrop"></canvas>
+    </body>
+</html>

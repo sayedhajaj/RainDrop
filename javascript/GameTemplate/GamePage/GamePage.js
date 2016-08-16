@@ -6,7 +6,7 @@ GamePage.prototype.init = function(){
 
 };
 
-GamePage.prototype.update = function(){
+GamePage.prototype.update = function(delta){
 
 };
 
@@ -14,7 +14,7 @@ GamePage.prototype.draw = function(){
 
 };
 
-GamePage.prototype.handleKeyInput = function(evt, keyup){
+GamePage.prototype.handleKeyInput = function(keyup){
 
 };
 
@@ -34,7 +34,11 @@ GamePage.prototype.handleMouseMove = function(x, y){
 
 };
 
-GamePage.prototype.handleTouchClick = function(x, y){
+GamePage.prototype.handleTouchStart = function(x, y){
+
+};
+
+GamePage.prototype.handleTouchEnd = function(x, y){
 
 };
 
@@ -43,5 +47,9 @@ GamePage.prototype.handleTouchMove = function(x, y){
 };
 
 GamePage.prototype.handleDeviceOrientation = function(x, y, z){
+
+};
+
+GamePage.prototype.handleDeviceMotion = function(x, y, z){
 
 };

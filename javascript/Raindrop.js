@@ -1,12 +1,10 @@
 function Raindrop(x, y, imgNum, height){
-    this.position = new Vector(x, y);
+    this.position = new Vector2D(x, y);
     this.height = 10;
     this.angle=0;
     this.angleSpeed = 0;
-    this.image = new Image();
-    this.image.src = "images/tearImage"+(imgNum||0)+".png";
-    this.image.onload = console.log(this.image.width+", "+this.image.height);
-    this.dimensions = new Vector(this.image.width, this.image.height)
+    this.image = images["player"];
+    this.dimensions = new Vector2D(this.image.width, this.image.height)
 }
 
 Raindrop.prototype.update = function(){
@@ -19,7 +17,7 @@ Raindrop.prototype.draw = function(){
     ctx.save();
 	ctx.translate(this.position.a, this.position.b);
 	ctx.rotate(this.angle * Math.PI/180);
-    ctx.drawImage(this.image, -this.dimensions.a/2, -this.dimensions.b/2, this.dimensions.a, this.dimensions.b);
+    ctx.drawImage(this.image, -this.dimensions.x/2, -this.dimensions.y/2, this.dimensions.x, this.dimensions.y);
 	ctx.restore();
 
 
