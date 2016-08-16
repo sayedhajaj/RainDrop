@@ -1,6 +1,6 @@
 var sources = {
     "player": "images/Avatar.png",
-    "background": "images/background/new_background_glass.png",
+    "background": "images/background/new_Background_Glass.png",
     "condensation": "images/background/Background-Condensation.png",
     "crack": "images/craCk.png",
     "highScore": "images/text/Highscore.png",
