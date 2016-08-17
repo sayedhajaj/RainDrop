@@ -46,6 +46,7 @@ class Player extends Sprite {
     }
 
     setGameOver() {
+        //if (mainGame.score > mainGame.getHighScore()) mainGame.saveHighScore();
         gpm.setPage(gameOverPage);
     }
 
@@ -58,10 +59,13 @@ class Player extends Sprite {
     }
 
     update(timePassed) {
+        var topMiddle = this.transform.transform(
+            this.position.AddVector(new Vector2D(Math.divideDec(this.dimensions.x, 2), this.dimensions.y)).to3D()
+        );
         this.velocity.x = -Math.floor(Math.multDec(this.speed, Math.sin(toRadians(this.angle))));
         this.velocity.y = Math.floor(Math.multDec(this.speed, Math.cos(toRadians(this.angle))));
-        if (this.position.x + this.dimensions.x > canvas.width) this.velocity.x = Math.min(0, this.velocity.x);
-        if (this.position.x < 20) this.velocity.x = Math.max(0, this.velocity.x);
+        if (topMiddle.x >= canvas.width*2) this.velocity.x = Math.min(0, this.velocity.x);
+        if (topMiddle.x <= 0) this.velocity.x = Math.max(0, this.velocity.x);
         super.update(timePassed);
         this.distance += this.velocity.y;
         if(this.velocity.Length() != 0) this.calculateMatrix();
@@ -69,6 +73,19 @@ class Player extends Sprite {
             this.angle += this.turnSpeed;
             this.calculateMatrix();
         }
+    }
+
+    draw() {
+        var tempCanv = document.createElement('canvas');
+        var tempCtx = tempCanv.getContext("2d");
+        var imageToDraw = this.animations[this.currentAnimation].getImage();
+        tempCtx.putImageData(imageToDraw, 0, 0);
+        ctx.translate(this.position.x+this.dimensions.x/2, this.position.y+this.dimensions.y/2);
+        ctx.rotate(toRadians(this.angle));
+        ctx.translate(-(this.position.x+this.dimensions.x/2), -(this.position.y+this.dimensions.y/2));
+
+        ctx.drawImage(tempCanv, this.position.x, this.position.y);
+        ctx.restore();
     }
 
     calculateMatrix() {

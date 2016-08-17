@@ -52,7 +52,7 @@ class Matrix3D extends Matrix2D {
 
 	getInverse() {
 		var det = this.getDeterminant();
-		return this.getCoFactorMatrix().transpose().multiply(Math.divideDec(1, det));
+		return this.getCoFactorMatrix().transpose().multiply(1 / det);
 	}
 
 	getDeterminant() {
@@ -184,3 +184,13 @@ class Matrix3D extends Matrix2D {
 	}
 
 }
+
+var matrix = new Matrix3D();
+matrix.setRow(new Vector3D(2, -1, 1), 0);
+matrix.setRow(new Vector3D(1, 2, 3), 1);
+matrix.setRow(new Vector3D(0, 1, 2), 2);
+//console.log(matrix.getCoFactorMatrix().elements);
+console.log(Matrix3D.Multiply(
+	Matrix3D.rotation(80),
+	Matrix3D.rotation(80).getInverse()
+).elements);

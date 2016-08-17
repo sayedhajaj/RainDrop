@@ -4,14 +4,25 @@ class HomePage extends GamePage {
         super();
     }
 
+    update(delta) {
+    }
+
     draw() {
         ctx.drawImage(images["background"], 0, 0, 360, 480);
         //ctx.drawImage(images["condensation"], 0, 0, 360, 480);
         ctx.drawImage(images["highScore"], 10, 10, 110, 15);
-        ctx.drawImage(images["dewdropstext"], 225, 10, 120, 15);
+        ctx.drawImage(images["dewdrop"], 280, 5, 25, 25);
         ctx.drawImage(images["logo"], 5, 140, 350, 79);
         ctx.drawImage(images["player"], 185, 140, 36, 54);
         ctx.drawImage(images["tapToPlay"], 70, 250, 230, 29);
+        var numbers = getNumberImages(mainGame.getHighScore());
+        for (var i = 0; i < numbers.length; i++) {
+            ctx.drawImage(numbers[i], 125 + (i*15), 10, 15, 15);
+        }
+        numbers = getNumberImages(getDewDrops());
+        for (var i = 0; i < numbers.length; i++) {
+            ctx.drawImage(numbers[i], 325 + (i*15), 10, 15, 15);
+        }
     }
 
     handleKeyInput(keyup) {

@@ -4,13 +4,14 @@ class ObstacleSpawner {
             positions: [],
             refill: function() {
                 this.positions = [];
-                for (var i = 0; i < 270; i+=90) {
-                    this.positions.push(randomInRange(i, i+90));
-                    this.positions.push(randomInRange(i, i+90));
+                for (var i = 0; i < 270*2; i+=90) {
+                    this.positions.push(Math.floor(randomInRange(i, i+90)));
+                    this.positions.push(Math.floor(randomInRange(i, i+90)));
                 }
+                this.positions.shuffle();
             },
             getPosition: function() {
-                return this.positions.pop();
+                return this.positions.shift();
             }
         };
         this.gameObjects = [];
@@ -19,7 +20,8 @@ class ObstacleSpawner {
     init() {
 
         this.gameObjects = [];
-        for (var i = 0; i <= 2*canvas.height; i+= canvas.height/2) {
+        this.gameObjectBag.refill();
+        for (var i = canvas.height; i <= 2*canvas.height; i+= canvas.height/2) {
             this.spawnObstacle(i);
         }
     }
@@ -40,7 +42,7 @@ class ObstacleSpawner {
             this.spawnObstacle(lastPos.y + canvas.height/2);
         }
         var firstObject = this.gameObjects[0];
-        if (firstObject.position.y < -firstObject.dimensions.y) this.gameObjectBag.shift();
+        if (firstObject.position.y < -firstObject.dimensions.y) this.gameObjects.shift();
         for (var obstacle of this.gameObjects) {
             obstacle.update();
         }

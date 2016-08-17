@@ -25,4 +25,12 @@ class PausePage extends GamePage {
         ctx.textAlign = 'left';
 
     }
+
+    handleMouseClick(x, y) {
+        lm.setLevelFromStart(0);
+    }
+
+    handleTouchMove(x, y) {
+        this.handleMouseClick(x, y);
+    }
 }

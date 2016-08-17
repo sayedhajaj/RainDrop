@@ -8,7 +8,7 @@ class MainGame extends Level {
 
     init() {
         camera.reset();
-        this.bgColor = "white";
+        this.bgColor = "lightblue";
         this.highScore = this.getHighScore();
         obstacleSpawner = new ObstacleSpawner();
         obstacleSpawner.init();
@@ -17,9 +17,6 @@ class MainGame extends Level {
             new Vector2D(36, 54)
         );
         ctx.fillStyle=this.bgColor;
-        playerBoundPos = new Vector2D(Math.divideDec(canvas.width, 2.5), Math.divideDec(canvas.height, 4));
-        playerBoundSize = new Vector2D(100, 10);
-        //camera.position = playerBoundPos.SubtractVector(player.position);
 
     }
 
@@ -44,15 +41,17 @@ class MainGame extends Level {
         ctx.fillStyle = this.bgColor;
     	ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(images["background"], 0, (camera.position.y%480), 360, 480);
-        ctx.drawImage(images["condensation"], 0, (camera.position.y%480), 360, 480);
         ctx.drawImage(images["background"], 0, (camera.position.y%480)+480, 360, 480);
-        ctx.drawImage(images["condensation"], 0, (camera.position.y%480)+480, 360, 480);
-        ctx.fillStyle = "#000";
 
+        ctx.drawImage(images["glass"], 0,0, 360, 480);
+
+        //ctx.drawImage(images["pause-button"], )
+
+        ctx.fillStyle = "#000";
         ctx.fillRect(-36 + camera.position.x, (camera.position.y%480), 36, 480);
-        ctx.fillRect(360 + camera.position.x, (camera.position.y%480), 36, 480);
+        ctx.fillRect(360*2 + camera.position.x, (camera.position.y%480), 36, 480);
         ctx.fillRect(-36 + camera.position.x, (camera.position.y%480)+480, 36, 480);
-        ctx.fillRect(360 + camera.position.x, (camera.position.y%480)+480, 36, 480);
+        ctx.fillRect(360*2 + camera.position.x, (camera.position.y%480)+480, 36, 480);
 
 
     	ctx.save();
@@ -63,7 +62,10 @@ class MainGame extends Level {
     	player.draw();
         camera.resetContextTransform();
         ctx.drawImage(images["highScore"], 10, 10, 110, 15);
-        ctx.drawImage(images["dewdropstext"], 225, 10, 120, 15);
+        var numbers = getNumberImages(Math.max(mainGame.getHighScore(), this.score));
+        for (var i = 0; i < numbers.length; i++) {
+            ctx.drawImage(numbers[i], 125 + (i*15), 10, 15, 15);
+        }
 
         /*ctx.fillStyle="#fff";
     	ctx.font="bold 30px helvetica";

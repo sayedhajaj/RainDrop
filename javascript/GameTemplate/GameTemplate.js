@@ -191,6 +191,7 @@ function play(){
     var gameLoop = function(){
         now = Date.now();
         delta = now - then;
+        //console.log(delta);
         var currentPage = gpm.currentPage;
         if(currentPage) currentPage.update(delta);
         if(currentPage) currentPage.draw();
@@ -310,7 +311,6 @@ Math.multDec = function ( a, b ) {
 
 Math.divideDec = function ( a, b ) {
     return Math.multDec(a, 100/(b*100));
-    return a*100.0/(b*100.0);
 }
 
 Math.subtractDec = function ( a, b ) {
