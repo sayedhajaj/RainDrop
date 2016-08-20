@@ -34,8 +34,8 @@ Animation.prototype.getImage = function(){
 
 Animation.prototype.getReversedAnimation = function(){
     var anim = new Animation(this.timeDelay);
-    for (frame of this.animationFrames.slice().reverse()) {
+    for (var frame of this.animationFrames.slice().reverse()) {
         anim.addFrame(frame);
     }
     return anim;
-}
+};

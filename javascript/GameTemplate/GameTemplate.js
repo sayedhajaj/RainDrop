@@ -47,36 +47,36 @@ function main(gameName){
 	});
 
 	canvas.addEventListener('mouseup', function(evt){
-		var x = evt.offsetX;
-		var y = evt.offsetY;
+		var x = Math.round(Math.divideDec(evt.offsetX, widthScale));
+		var y = Math.round(Math.divideDec(evt.offsetY, heightScale));
         mouseEnd = new Vector2D(x, y);
         mouseTraveled = mouseEnd.SubtractVector(mouseStart);
 		gpm.handleMouseUp(x, y);
 	});
 	canvas.addEventListener('click', function(evt){
-		var x = evt.offsetX;
-		var y = evt.offsetY;
+		var x = Math.round(Math.divideDec(evt.offsetX, widthScale));
+		var y = Math.round(Math.divideDec(evt.offsetY, heightScale));
 		gpm.handleMouseClick(x, y);
 	});
 
 	canvas.addEventListener('mousemove', function(evt){
-		var x = evt.offsetX;
-		var y = evt.offsetY;
+		var x = Math.round(Math.divideDec(evt.offsetX, widthScale));
+		var y = Math.round(Math.divideDec(evt.offsetY, heightScale));
 		gpm.handleMouseMove(x, y);
 	});
 
 	canvas.addEventListener('touchstart', function(evt){
 		var touch = evt.touches[0];
-		var x = touch.pageX;
-		var y = touch.pageY;
+        var x = Math.round(Math.divideDec(touch.pageX, widthScale));
+		var y = Math.round(Math.divideDec(touch.pageY, heightScale))-50;
         mouseStart = new Vector2D(x, y);
 		gpm.handleTouchStart(x, y);
 	});
 
     canvas.addEventListener('touchend', function(evt){
 		var touch = evt.changedTouches[0];
-		var x = touch.pageX;
-		var y = touch.pageY;
+        var x = Math.round(Math.divideDec(touch.pageX, widthScale));
+		var y = Math.round(Math.divideDec(touch.pageY, heightScale))-50;
         mouseEnd = new Vector2D(x, y);
         mouseTraveled = mouseEnd.SubtractVector(mouseStart);
 		gpm.handleTouchEnd(x, y);
@@ -84,8 +84,8 @@ function main(gameName){
 
 	canvas.addEventListener('touchmove', function(evt){
 		var touch = evt.touches[0];
-		var x = touch.pageX;
-		var y = touch.pageY;
+        var x = Math.round(Math.divideDec(touch.pageX, widthScale));
+		var y = Math.round(Math.divideDec(touch.pageY, heightScale))-50;
         mouseEnd = new Vector2D(x, y);
         mouseTraveled = mouseEnd.SubtractVector(mouseStart);
 		evt.preventDefault();
@@ -176,7 +176,6 @@ function resizeCanvas(){
         widthScale = 1;
         heightScale = 1;
     }
-
 }
 
 function play(){

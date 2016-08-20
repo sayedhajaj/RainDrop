@@ -27,7 +27,7 @@ class PausePage extends GamePage {
     }
 
     handleMouseClick(x, y) {
-        lm.setLevelFromStart(0);
+        gpm.setPage(gpm.lastPage);
     }
 
     handleTouchMove(x, y) {

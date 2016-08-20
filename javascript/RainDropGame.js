@@ -34,7 +34,6 @@ var homePage, mainGame, gameOverPage, pausePage;
 
 function init(){
     ctx.mozImageSmoothingEnabled = true;
-    ctx.webkitImageSmoothingEnabled = true;
     ctx.msImageSmoothingEnabled = true;
     ctx.imageSmoothingEnabled = true;
 	homePage = new HomePage();

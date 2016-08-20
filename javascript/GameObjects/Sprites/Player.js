@@ -40,13 +40,13 @@ class Player extends Sprite {
             if(
                 contains(verticy.x, obstacle.position.x, obstacle.dimensions.x) &&
                 contains(verticy.y, obstacle.position.y, obstacle.dimensions.y)
-            ) return true;
+            ) if(obstacle.position.AddVector(obstacle.dimensions.Multiply(0.5)).SubtractVector(verticy).Length() <= 40) return true;
         }
         return false;
     }
 
     setGameOver() {
-        //if (mainGame.score > mainGame.getHighScore()) mainGame.saveHighScore();
+        if (mainGame.score > mainGame.getHighScore()) mainGame.saveHighScore();
         gpm.setPage(gameOverPage);
     }
 
@@ -91,10 +91,11 @@ class Player extends Sprite {
     calculateMatrix() {
         var origin = this.position.AddVector(this.dimensions.Multiply(0.5));
         var lastTransform = this.transform;
-        this.transform = Matrix3D.translation(origin.Multiply(-1));
+        var translation = Matrix3D.translation(origin.Multiply(-1));
+        this.transform = translation;
         //this.transform = Matrix3D.Multiply(Matrix3D.scale(new Vector2D(1.5, 1.5)), this.transform);
         this.transform = Matrix3D.Multiply(Matrix3D.rotation(this.angle), this.transform);
-        this.transform = Matrix3D.Multiply(Matrix3D.translation(origin.Multiply(1)), this.transform);
+        this.transform = Matrix3D.Multiply(translation.getInverse(), this.transform);
         //this.transform = Matrix3D.Multiply(Matrix3D.rotation(-this.angle), this.transform);
         if(this.transform.getDeterminant() == 0) return lastTransform;
         return this.transform;

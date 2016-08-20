@@ -4,7 +4,7 @@ class ObstacleSpawner {
             positions: [],
             refill: function() {
                 this.positions = [];
-                for (var i = 0; i < 270*2; i+=90) {
+                for (var i = 0; i < 360*2-90; i+=90) {
                     this.positions.push(Math.floor(randomInRange(i, i+90)));
                     this.positions.push(Math.floor(randomInRange(i, i+90)));
                 }

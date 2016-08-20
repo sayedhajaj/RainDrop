@@ -173,14 +173,14 @@ class Matrix3D extends Matrix2D {
 
 	static rotation(angle) {
 		var result = Matrix3D.Identity();
-		var angleRads = toRadians(-angle);
+		var angleRads = toRadians(angle);
 		var angleCos = Math.cos(angleRads);
 		var angleSin = Math.sin(angleRads);
 		result.elements[0][0] = angleCos;
 		result.elements[1][1] = angleCos;
-		result.elements[0][1] = angleSin;
-		result.elements[1][0] = -angleSin;
-		return result
+		result.elements[0][1] = -angleSin;
+		result.elements[1][0] = angleSin;
+		return result;
 	}
 
 }
@@ -190,7 +190,11 @@ matrix.setRow(new Vector3D(2, -1, 1), 0);
 matrix.setRow(new Vector3D(1, 2, 3), 1);
 matrix.setRow(new Vector3D(0, 1, 2), 2);
 //console.log(matrix.getCoFactorMatrix().elements);
-console.log(Matrix3D.Multiply(
-	Matrix3D.rotation(80),
-	Matrix3D.rotation(80).getInverse()
+/*console.log(Matrix3D.Multiply(
+	Matrix3D.translation(new Vector2D(200, 2000)),
+	Matrix3D.translation(new Vector2D(200, 2000)).getInverse()
 ).elements);
+*/
+console.log(Matrix3D.rotation(60).elements);
+console.log(Matrix3D.rotation(-60).elements);
+console.log(Matrix3D.rotation(60).getInverse().elements);

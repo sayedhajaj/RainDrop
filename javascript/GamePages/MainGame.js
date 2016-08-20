@@ -40,10 +40,10 @@ class MainGame extends Level {
     draw() {
         ctx.fillStyle = this.bgColor;
     	ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(images["glass"], 0,0, 360, 480);
         ctx.drawImage(images["background"], 0, (camera.position.y%480), 360, 480);
         ctx.drawImage(images["background"], 0, (camera.position.y%480)+480, 360, 480);
 
-        ctx.drawImage(images["glass"], 0,0, 360, 480);
 
         //ctx.drawImage(images["pause-button"], )
 
@@ -62,9 +62,13 @@ class MainGame extends Level {
     	player.draw();
         camera.resetContextTransform();
         ctx.drawImage(images["highScore"], 10, 10, 110, 15);
-        var numbers = getNumberImages(Math.max(mainGame.getHighScore(), this.score));
+        var numbers = getNumberImages(Math.max(mainGame.highScore, this.score));
         for (var i = 0; i < numbers.length; i++) {
             ctx.drawImage(numbers[i], 125 + (i*15), 10, 15, 15);
+        }
+        numbers = getNumberImages( this.score);
+        for (var i = 0; i < numbers.length; i++) {
+            ctx.drawImage(numbers[i], 125 + (i*15), 30, 15, 15);
         }
 
         /*ctx.fillStyle="#fff";
