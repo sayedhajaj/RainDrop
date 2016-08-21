@@ -81,9 +81,9 @@ class MainGame extends Level {
 
     handleKeyInput(keyup) {
         if(keyup){
-    		if (keystate[f]) {
-    			requestFullScreen();
-    		}
+            if (keystate[f])
+                requestFullScreen();
+
             if (keystate[p]) gpm.setPage(1);
             player.handleKeyInput(true);
 

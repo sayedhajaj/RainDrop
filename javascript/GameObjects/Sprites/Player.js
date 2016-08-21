@@ -40,7 +40,7 @@ class Player extends Sprite {
             if(
                 contains(verticy.x, obstacle.position.x, obstacle.dimensions.x) &&
                 contains(verticy.y, obstacle.position.y, obstacle.dimensions.y)
-            ) if(obstacle.position.AddVector(obstacle.dimensions.Multiply(0.5)).SubtractVector(verticy).Length() <= 40) return true;
+            ) /*if(obstacle.position.AddVector(obstacle.dimensions.Multiply(0.5)).SubtractVector(verticy).Length() <= 40)*/ return true;
         }
         return false;
     }

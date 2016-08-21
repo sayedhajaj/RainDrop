@@ -5,8 +5,8 @@ class ObstacleSpawner {
             refill: function() {
                 this.positions = [];
                 for (var i = 0; i < 360*2-90; i+=90) {
-                    this.positions.push(Math.floor(randomInRange(i, i+90)));
-                    this.positions.push(Math.floor(randomInRange(i, i+90)));
+                    for (var j = 1; j < 2 + Math.round(Math.abs(315-i)/90); j++)
+                        this.positions.push(Math.floor(randomInRange(i, i+90)));
                 }
                 this.positions.shuffle();
             },

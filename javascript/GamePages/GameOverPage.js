@@ -22,9 +22,8 @@ class GameOverPage extends GamePage {
 
     handleKeyInput(keyup) {
         if(keyup){
-            if (keystate[f]) {
+            if (keystate[f])
     			requestFullScreen();
-    		}
 
             if(keystate[enter])
                 this.restartButton.click();

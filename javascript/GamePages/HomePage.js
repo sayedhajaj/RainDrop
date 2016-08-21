@@ -26,9 +26,8 @@ class HomePage extends GamePage {
 
     handleKeyInput(keyup) {
         if(keyup){
-            if (keystate[f]) {
-    			requestFullScreen();
-    		}
+            if (keystate[f])
+                requestFullScreen();
 
             if(keystate[enter]) lm.setLevelFromStart(0);
 

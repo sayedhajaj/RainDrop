@@ -45,7 +45,6 @@ function init(){
 	gpm.addPage(homePage);
 	gpm.addPage(pausePage);
 	gpm.setPageFromStart(homePage);
-    //lm.setLevel(0);
 	play();
 }
 
