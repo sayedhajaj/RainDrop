@@ -24,30 +24,28 @@ class Player extends Sprite {
     this.states[0].enter(this);
     }
 
-    collide(obstacle) {
+    collide(obstacles) {
         var vertices = [];
-        /*vertices.push(this.transform.transform(this.position.to3D()));
-        vertices.push(this.transform.transform(this.position.AddVector(this.dimensions).to3D()));
-        vertices.push(this.transform.transform(this.position.AddVector(new Vector2D(this.dimensions.x, 0)).to3D()));
-        vertices.push(this.transform.transform(this.position.AddVector(new Vector2D(0, this.dimensions.y)).to3D()));*/
         vertices.push(this.transform.transform(this.position.AddVector(this.dimensions).to3D()));
         vertices.push(this.transform.transform(this.position.AddVector(new Vector2D(Math.divideDec(this.dimensions.x, 2), 0)).to3D()));
         vertices.push(this.transform.transform(this.position.AddVector(new Vector2D(0, this.dimensions.y)).to3D()));
         function contains(p1, p2, d){
             return (p1 <= p2+d && p1 >= p2);
         }
-        for (var verticy of vertices) {
-            if(
-                contains(verticy.x, obstacle.position.x, obstacle.dimensions.x) &&
-                contains(verticy.y, obstacle.position.y, obstacle.dimensions.y)
-            ) /*if(obstacle.position.AddVector(obstacle.dimensions.Multiply(0.5)).SubtractVector(verticy).Length() <= 40)*/ return true;
+        for (var obstacle of obstacles) {
+            for (var verticy of vertices) {
+                if(
+                    contains(verticy.x, obstacle.position.x, obstacle.dimensions.x) &&
+                    contains(verticy.y, obstacle.position.y, obstacle.dimensions.y)
+                ) /*if(obstacle.position.AddVector(obstacle.dimensions.Multiply(0.5)).SubtractVector(verticy).Length() <= 40)*/ return true;
+            }
         }
         return false;
     }
 
     setGameOver() {
         if (mainGame.score > mainGame.getHighScore()) mainGame.saveHighScore();
-        gpm.setPage(gameOverPage);
+        gpm.setPageFromStart(gameOverPage);
     }
 
     handleKeyInput(keyup) {
@@ -62,10 +60,13 @@ class Player extends Sprite {
         var topMiddle = this.transform.transform(
             this.position.AddVector(new Vector2D(Math.divideDec(this.dimensions.x, 2), this.dimensions.y)).to3D()
         );
+        //topMiddle = this.position.AddVector(new Vector2D(Math.divideDec(this.dimensions.x, 2), this.dimensions.y));
         this.velocity.x = -Math.floor(Math.multDec(this.speed, Math.sin(toRadians(this.angle))));
         this.velocity.y = Math.floor(Math.multDec(this.speed, Math.cos(toRadians(this.angle))));
         if (topMiddle.x >= canvas.width*2) this.velocity.x = Math.min(0, this.velocity.x);
         if (topMiddle.x <= 0) this.velocity.x = Math.max(0, this.velocity.x);
+        if (topMiddle.x >= canvas.width*2) this.setGameOver();
+        if (topMiddle.x <= 0) this.setGameOver();
         super.update(timePassed);
         this.distance += this.velocity.y;
         if(this.velocity.Length() != 0) this.calculateMatrix();
@@ -74,7 +75,7 @@ class Player extends Sprite {
             this.calculateMatrix();
         }
     }
-
+/*
     draw() {
         var tempCanv = document.createElement('canvas');
         var tempCtx = tempCanv.getContext("2d");
@@ -87,7 +88,7 @@ class Player extends Sprite {
         ctx.drawImage(tempCanv, this.position.x, this.position.y);
         ctx.restore();
     }
-
+*/
     calculateMatrix() {
         var origin = this.position.AddVector(this.dimensions.Multiply(0.5));
         var lastTransform = this.transform;

@@ -195,6 +195,3 @@ matrix.setRow(new Vector3D(0, 1, 2), 2);
 	Matrix3D.translation(new Vector2D(200, 2000)).getInverse()
 ).elements);
 */
-console.log(Matrix3D.rotation(60).elements);
-console.log(Matrix3D.rotation(-60).elements);
-console.log(Matrix3D.rotation(60).getInverse().elements);

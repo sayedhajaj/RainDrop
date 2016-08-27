@@ -313,11 +313,14 @@ Math.divideDec = function ( a, b ) {
 }
 
 Math.subtractDec = function ( a, b ) {
-    return Math.round((a - b) * 100) / 100;
+    return Math.addDec(a, -b);
 }
 
 Math.addDec = function ( a, b ) {
-    return Math.round((a + b) * 100) / 100;
+    var atens = Math.pow(10,String(a).length - String(a).indexOf('.') - 1);
+    var btens = Math.pow(10,String(b).length - String(b).indexOf('.') - 1);
+    var resultTens = Math.max(atens, btens);
+    return Math.round((a + b) * resultTens) / resultTens;
 }
 
 

@@ -12,6 +12,7 @@ var sources = {
     "logo": "images/Deluge-Logo-2.png",
     "dewdrop": "images/Dew-Drop.png",
     "pause-button": "images/buttons/pause_button.png",
+    "play-button": "images/buttons/play_button.png",
     "replay-button": "images/buttons/replay_icon.png",
     "home-button": "images/buttons/Home-icon.png",
 

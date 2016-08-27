@@ -4,9 +4,9 @@ class ObstacleSpawner {
             positions: [],
             refill: function() {
                 this.positions = [];
-                for (var i = 0; i < 360*2-90; i+=90) {
-                    for (var j = 1; j < 2 + Math.round(Math.abs(315-i)/90); j++)
-                        this.positions.push(Math.floor(randomInRange(i, i+90)));
+                for (var i = 0; i < (canvas.width)*2-Crack.SIZE; i+=Crack.SIZE) {
+                    for (var j = 1; j < 2 + Math.round(Math.abs(315-i)/Crack.SIZE); j++)
+                        this.positions.push(Math.floor(randomInRange(i, i+Crack.SIZE)));
                 }
                 this.positions.shuffle();
             },

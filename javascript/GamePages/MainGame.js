@@ -13,7 +13,7 @@ class MainGame extends Level {
         obstacleSpawner = new ObstacleSpawner();
         obstacleSpawner.init();
         player = new Player(
-            new Vector2D(185, 200),
+            new Vector2D(175, 160),
             new Vector2D(36, 54)
         );
         ctx.fillStyle=this.bgColor;
@@ -27,11 +27,8 @@ class MainGame extends Level {
     update(delta) {
         obstacleSpawner.update();
         player.update(delta);
-        for (var obstacle of obstacleSpawner.gameObjects) {
-            if (player.collide(obstacle)) {
-                player.setGameOver();
-            }
-        }
+        if (player.collide(obstacleSpawner.gameObjects)) player.setGameOver();
+
         this.score = Math.floor(player.distance/(canvas.height/2));
         this.cameraScroll();
         camera.update();
