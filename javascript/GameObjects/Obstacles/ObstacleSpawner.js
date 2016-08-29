@@ -33,7 +33,7 @@ class ObstacleSpawner {
         ));
     }
 
-    update() {
+    update(delta) {
         if (this.gameObjectBag.positions.length == 0) this.gameObjectBag.refill();
         var lastPos = this.gameObjects[this.gameObjects.length - 1].position;
         lastPos = lastPos.AddVector(camera.position);
@@ -44,7 +44,7 @@ class ObstacleSpawner {
         var firstObject = this.gameObjects[0];
         if (firstObject.position.y < -firstObject.dimensions.y) this.gameObjects.shift();
         for (var obstacle of this.gameObjects) {
-            obstacle.update();
+            obstacle.update(delta);
         }
     }
 

@@ -7,7 +7,9 @@ class Player extends Sprite {
         this.maxAngle = 45;
         this.turnSpeed = 5;
         this.speed = 3;
+        this.maxSpeed = 5;
         this.calculateMatrix();
+        this.calculateCollisionBounds();
         this.animations = (function(){
             var animList = [];
             var anim;
@@ -17,7 +19,7 @@ class Player extends Sprite {
     		anim.addFrame(frame);
             animList["idle"] = anim;
             return animList;
-    })();
+        })();
 
     this.currentAnimation = "idle";
     this.states.unshift(new PlayerState());
@@ -25,20 +27,24 @@ class Player extends Sprite {
     }
 
     collide(obstacles) {
-        var vertices = [];
+        /*var vertices = [];
         vertices.push(this.transform.transform(this.position.AddVector(this.dimensions).to3D()));
         vertices.push(this.transform.transform(this.position.AddVector(new Vector2D(Math.divideDec(this.dimensions.x, 2), 0)).to3D()));
         vertices.push(this.transform.transform(this.position.AddVector(new Vector2D(0, this.dimensions.y)).to3D()));
         function contains(p1, p2, d){
             return (p1 <= p2+d && p1 >= p2);
-        }
+        }*/
+        var boundCenter = this.transform.transform(this.bounds.center.to3D());
         for (var obstacle of obstacles) {
-            for (var verticy of vertices) {
+            if(obstacle.bounds.center.SubtractVector(boundCenter).Length() <= obstacle.bounds.radius + this.bounds.radius)
+                return true;
+            /*for (var verticy of vertices) {
                 if(
                     contains(verticy.x, obstacle.position.x, obstacle.dimensions.x) &&
                     contains(verticy.y, obstacle.position.y, obstacle.dimensions.y)
-                ) /*if(obstacle.position.AddVector(obstacle.dimensions.Multiply(0.5)).SubtractVector(verticy).Length() <= 40)*/ return true;
-            }
+                ) return true;
+            }*/
+
         }
         return false;
     }
@@ -65,8 +71,8 @@ class Player extends Sprite {
         this.velocity.y = Math.floor(Math.multDec(this.speed, Math.cos(toRadians(this.angle))));
         if (topMiddle.x >= canvas.width*2) this.velocity.x = Math.min(0, this.velocity.x);
         if (topMiddle.x <= 0) this.velocity.x = Math.max(0, this.velocity.x);
-        if (topMiddle.x >= canvas.width*2) this.setGameOver();
-        if (topMiddle.x <= 0) this.setGameOver();
+        //if (topMiddle.x >= canvas.width*2) this.setGameOver();
+        //if (topMiddle.x <= 0) this.setGameOver();
         super.update(timePassed);
         this.distance += this.velocity.y;
         if(this.velocity.Length() != 0) this.calculateMatrix();
@@ -74,6 +80,7 @@ class Player extends Sprite {
             this.angle += this.turnSpeed;
             this.calculateMatrix();
         }
+        this.calculateCollisionBounds();
     }
 /*
     draw() {
@@ -89,6 +96,7 @@ class Player extends Sprite {
         ctx.restore();
     }
 */
+
     calculateMatrix() {
         var origin = this.position.AddVector(this.dimensions.Multiply(0.5));
         var lastTransform = this.transform;
@@ -100,6 +108,18 @@ class Player extends Sprite {
         //this.transform = Matrix3D.Multiply(Matrix3D.rotation(-this.angle), this.transform);
         if(this.transform.getDeterminant() == 0) return lastTransform;
         return this.transform;
+    }
+
+    calculateCollisionBounds() {
+        var position = this.position;
+        var dimensions = this.dimensions;
+        this.bounds = {
+            center: new Vector2D(
+                Math.addDec(position.x, Math.divideDec(dimensions.x, 2)),
+                Math.subtractDec(Math.addDec(position.y, dimensions.y), Math.divideDec(dimensions.x, 2))
+            ),
+            radius: Math.divideDec(dimensions.x, 2)
+        };
     }
 
     changeDirection() {

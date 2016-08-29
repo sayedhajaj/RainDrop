@@ -25,7 +25,7 @@ class MainGame extends Level {
     }
 
     update(delta) {
-        obstacleSpawner.update();
+        obstacleSpawner.update(delta);
         player.update(delta);
         if (player.collide(obstacleSpawner.gameObjects)) player.setGameOver();
 
