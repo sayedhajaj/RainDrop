@@ -8,7 +8,7 @@ class PausePage extends GamePage {
             images["home-button"], new Vector2D(40, 275), new Vector2D(90, 90), function(){gpm.setPage(0);}
         );
         this.playButton = new Button(
-            images["play-button"], new Vector2D(160, 180), new Vector2D(170, 170), function(){gpm.setPage(gpm.lastPage);}
+            images["play-button"], new Vector2D(170, 180), new Vector2D(150, 170), function(){gpm.setPage(gpm.lastPage);}
         );
     }
 

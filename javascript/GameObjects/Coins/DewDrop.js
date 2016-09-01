@@ -1,4 +1,4 @@
-class Crack extends GameObject {
+class DewDrop extends GameObject {
     constructor(position, dimensions) {
         super(position, dimensions);
         //this.image = images["crack"];
@@ -10,13 +10,12 @@ class Crack extends GameObject {
     }
 
     draw() {
-        ctx.drawImage(images["crack"], this.position.x, this.position.y, this.dimensions.x, this.dimensions.y);
+        ctx.drawImage(images["dewdrop"], this.position.x, this.position.y, this.dimensions.x, this.dimensions.y);
     }
 
     calculateCollisionBounds() {
-        var offset = 20;
-        var position = this.position.AddVector(new Vector2D(offset, offset));
-        var dimensions = this.dimensions.SubtractVector(new Vector2D(offset * 2, offset * 2));
+        var position = this.position;
+        var dimensions = this.dimensions;
         this.bounds = {
             center: new Vector2D(
                 Math.addDec(position.x, Math.divideDec(dimensions.x, 2)),
@@ -27,4 +26,4 @@ class Crack extends GameObject {
     }
 
 }
-Crack.SIZE = 90;
+DewDrop.SIZE = 42;

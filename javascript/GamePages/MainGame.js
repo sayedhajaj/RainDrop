@@ -1,17 +1,22 @@
-var player, background, obstacleSpawner;
+var player, background;
 var playerBoundPos, playerBoundSize;
 
 class MainGame extends Level {
     constructor() {
         super();
+        this.pauseButton = new Button(
+            images["pause-button"], new Vector2D(325, 10), new Vector2D(26, 31), function(){gpm.setPage(1);}
+        );
     }
 
     init() {
         camera.reset();
         this.bgColor = "lightblue";
         this.highScore = this.getHighScore();
-        obstacleSpawner = new ObstacleSpawner();
-        obstacleSpawner.init();
+        this.obstacleSpawner = new ObstacleSpawner();
+        this.obstacleSpawner.init();
+        this.coinSpawner = new CoinSpawner();
+        this.coinSpawner.init();
         player = new Player(
             new Vector2D(175, 160),
             new Vector2D(36, 54)
@@ -25,9 +30,12 @@ class MainGame extends Level {
     }
 
     update(delta) {
-        obstacleSpawner.update(delta);
+        this.obstacleSpawner.update(delta);
+        this.coinSpawner.update(delta);
         player.update(delta);
-        if (player.collide(obstacleSpawner.gameObjects)) player.setGameOver();
+        if (player.collide(this.obstacleSpawner.gameObjects)) player.setGameOver();
+        var collisionIndex = this.coinSpawner.collide(player);
+        if (collisionIndex > -1) player.collectDewDrop(this.coinSpawner, collisionIndex);
 
         this.score = Math.floor(player.distance/(canvas.height/2));
         this.cameraScroll();
@@ -54,7 +62,8 @@ class MainGame extends Level {
     	ctx.save();
 
         camera.transformContext();
-        obstacleSpawner.draw();
+        this.obstacleSpawner.draw();
+        this.coinSpawner.draw();
 
     	player.draw();
         camera.resetContextTransform();
@@ -67,6 +76,8 @@ class MainGame extends Level {
         for (var i = 0; i < numbers.length; i++) {
             ctx.drawImage(numbers[i], 125 + (i*15), 30, 15, 15);
         }
+
+        this.pauseButton.draw();
 
         /*ctx.fillStyle="#fff";
     	ctx.font="bold 30px helvetica";
@@ -90,11 +101,24 @@ class MainGame extends Level {
     }
 
     handleMouseClick(x, y) {
-        player.changeDirection();
+        this.pauseButton.handleClick(x, y);
+        if(!this.pauseButton.selected) player.changeDirection();
     }
 
     handleTouchStart(x, y) {
-        player.changeDirection();
+        this.pauseButton.handleMouseOver(x, y);
+    }
+
+    handleTouchMove(x, y) {
+        this.pauseButton.handleMouseOver(x, y);
+    }
+
+    handleTouchEnd(x, y) {
+        this.handleMouseClick(x, y);
+    }
+
+    handleMouseMove(x, y) {
+        this.handleTouchMove(x, y);
     }
 }
 

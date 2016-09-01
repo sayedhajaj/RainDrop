@@ -3,6 +3,7 @@ var sources = {
     "background": "images/background/background_glass.png",
     "glass": "images/background/Background-Glass.png",
     "crack": "images/craCk.png",
+    "dewdrop": "images/Dew-Drop.png",
 
     "highScore": "images/text/Highscore.png",
     "dewdropstext": "images/text/new_dew_drops_text.png",
@@ -70,6 +71,6 @@ function getDewDrops()  {
 	return 0;
 }
 
-function removeDewDrops(num) {
+function spendDewDrops(num) {
 	localStorage.setItem(gameTitle + "dewdrops", getDewDrops()-num);
 }

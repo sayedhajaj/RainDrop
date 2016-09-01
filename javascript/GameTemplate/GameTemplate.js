@@ -333,4 +333,4 @@ Array.prototype.shuffle = function() {
       this[i] = this[j];
       this[j] = temp;
     }
-}
+};
