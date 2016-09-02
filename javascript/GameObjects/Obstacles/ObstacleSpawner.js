@@ -26,10 +26,19 @@ class ObstacleSpawner {
     }
 
     spawnObstacle(height) {
+        var lastObject = this.gameObjects[this.gameObjects.length-1];
+        if (lastObject && lastObject.position.y == height) return;
         this.gameObjects.push(new Crack(
             new Vector2D(this.gameObjectBag.getPosition(), height),
             new Vector2D(Crack.SIZE, Crack.SIZE)
         ));
+        lastObject = this.gameObjects[this.gameObjects.length-1];
+        if (Math.abs(lastObject.position.x - this.gameObjectBag.positions[0]) >= canvas.width - Crack.SIZE) {
+            this.gameObjects.push(new Crack(
+                new Vector2D(this.gameObjectBag.getPosition(), height),
+                new Vector2D(Crack.SIZE, Crack.SIZE)
+            ));
+        }
     }
 
     update(delta) {
