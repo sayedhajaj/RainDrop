@@ -67,16 +67,18 @@ function main(gameName){
 
 	canvas.addEventListener('touchstart', function(evt){
 		var touch = evt.touches[0];
-        var x = Math.round(Math.divideDec(touch.pageX, widthScale));
-		var y = Math.round(Math.divideDec(touch.pageY, heightScale));
+        var rect = evt.target.getBoundingClientRect();
+        var x = Math.round(Math.divideDec(touch.pageX - rect.left, widthScale));
+		var y = Math.round(Math.divideDec(touch.pageY - rect.top, heightScale));
         mouseStart = new Vector2D(x, y);
 		gpm.handleTouchStart(x, y);
 	});
 
     canvas.addEventListener('touchend', function(evt){
 		var touch = evt.changedTouches[0];
-        var x = Math.round(Math.divideDec(touch.pageX, widthScale));
-		var y = Math.round(Math.divideDec(touch.pageY, heightScale));
+        var rect = evt.target.getBoundingClientRect();
+        var x = Math.round(Math.divideDec(touch.pageX - rect.left, widthScale));
+		var y = Math.round(Math.divideDec(touch.pageY - rect.top, heightScale));
         mouseEnd = new Vector2D(x, y);
         mouseTraveled = mouseEnd.SubtractVector(mouseStart);
 		gpm.handleTouchEnd(x, y);
@@ -84,8 +86,9 @@ function main(gameName){
 
 	canvas.addEventListener('touchmove', function(evt){
 		var touch = evt.touches[0];
-        var x = Math.round(Math.divideDec(touch.pageX, widthScale));
-		var y = Math.round(Math.divideDec(touch.pageY, heightScale));
+        var rect = evt.target.getBoundingClientRect();
+        var x = Math.round(Math.divideDec(touch.pageX - rect.left, widthScale));
+		var y = Math.round(Math.divideDec(touch.pageY - rect.top, heightScale));
         mouseEnd = new Vector2D(x, y);
         mouseTraveled = mouseEnd.SubtractVector(mouseStart);
 		evt.preventDefault();
