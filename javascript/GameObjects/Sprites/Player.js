@@ -3,9 +3,9 @@ class Player extends Sprite {
         super(position, dimensions);
         this.sideOn = false;
         this.distance = 0;
-        this.angle = -45;
+        this.angle = 0;
         this.maxAngle = 45;
-        this.turnSpeed = 5;
+        this.turnSpeed = 4;
         this.speed = 3;
         this.maxSpeed = 5;
         this.calculateMatrix();
@@ -53,14 +53,15 @@ class Player extends Sprite {
 
     update(timePassed) {
         var topMiddle = this.transform.transform(this.bounds.center.to3D());
-        this.velocity.x = -Math.floor(Math.multDec(this.speed, Math.sin(toRadians(this.angle))));
-        this.velocity.y = Math.floor(Math.multDec(this.speed, Math.cos(toRadians(this.angle))));
+        this.velocity.x = -Math.round(Math.multDec(this.speed, Math.sin(toRadians(this.angle))));
+        this.velocity.y = Math.round(Math.multDec(this.speed, Math.cos(toRadians(this.angle))));
         if (topMiddle.x + this.bounds.radius >= canvas.width*2) this.velocity.x = Math.min(0, this.velocity.x);
         if (topMiddle.x <= this.bounds.radius) this.velocity.x = Math.max(0, this.velocity.x);
         //if (topMiddle.x + this.bounds.radius >= canvas.width*2) this.setGameOver();
         //if (topMiddle.x <= this.bounds.radius) this.setGameOver();
         super.update(timePassed);
         this.distance += this.velocity.y;
+        this.speed += (this.distance > 0 && this.distance % (5 * mainGame.obstacleSpawner.getHeightGap()) === 0 && this.speed < this.maxSpeed) ? .1 : 0;
         if(this.velocity.Length() != 0) this.calculateMatrix();
         if(Math.abs(this.angle+this.turnSpeed) <= this.maxAngle) {
             this.angle += this.turnSpeed;
