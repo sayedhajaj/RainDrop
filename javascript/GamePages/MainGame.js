@@ -18,7 +18,7 @@ class MainGame extends Level {
         this.coinSpawner = new CoinSpawner();
         this.coinSpawner.init();
         player = new Player(
-            new Vector2D(175, 160),
+            new Vector2D(185, 140),
             new Vector2D(36, 54)
         );
         ctx.fillStyle=this.bgColor;
