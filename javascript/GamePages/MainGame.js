@@ -37,7 +37,7 @@ class MainGame extends Level {
         var collisionIndex = this.coinSpawner.collide(player);
         if (collisionIndex > -1) player.collectDewDrop(this.coinSpawner, collisionIndex);
 
-        this.score = Math.floor(player.distance/(canvas.height/2));
+        this.score = Math.floor(player.distance/(this.obstacleSpawner.getHeightGap()));
         this.cameraScroll();
         camera.update();
     }

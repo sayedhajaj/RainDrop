@@ -49,6 +49,7 @@ class CoinSpawner {
         var boundCenter = player.transform.transform(player.bounds.center.to3D());
         for (var i = 0; i < this.coins.length; i++) {
             var coin = this.coins[i];
+            if (coin.bounds.center.y > player.position.y + player.dimensions.y) break;
             if(coin.bounds.center.SubtractVector(boundCenter).Length() <= coin.bounds.radius + player.bounds.radius)
                 return i;
         }

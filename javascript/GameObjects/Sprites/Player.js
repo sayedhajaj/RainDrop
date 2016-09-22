@@ -5,7 +5,7 @@ class Player extends Sprite {
         this.distance = 0;
         this.angle = 0;
         this.maxAngle = 45;
-        this.turnSpeed = 5;
+        this.turnSpeed = 3;
         this.speed = 3;
         this.maxSpeed = 5;
         this.calculateMatrix();
@@ -29,11 +29,13 @@ class Player extends Sprite {
     collide(obstacles) {
         var boundCenter = this.transform.transform(this.bounds.center.to3D());
         var tip = this.transform.transform(this.position.AddVector(new Vector2D(this.dimensions.x/2, 0)).to3D());
-        for (var obstacle of obstacles)
+        for (var obstacle of obstacles) {
+            if (obstacle.bounds.center.y > this.position.y + this.dimensions.y) break;
             if(
                 obstacle.bounds.center.SubtractVector(boundCenter).Length() <= obstacle.bounds.radius + this.bounds.radius ||
                 obstacle.bounds.center.SubtractVector(tip).Length() <= obstacle.bounds.radius
             ) return true;
+        }
         return false;
     }
 

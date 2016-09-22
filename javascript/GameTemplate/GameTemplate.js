@@ -191,13 +191,13 @@ function play(){
     var now = then = Date.now();
     var delta = 0;
     var gameLoop = function(){
+        then = now;
         now = Date.now();
         delta = now - then;
-        //console.log(delta);
+        //console.log(Math.floor(1000/delta));
         var currentPage = gpm.currentPage;
         if(currentPage) currentPage.update(delta);
         if(currentPage) currentPage.draw();
-        then = now;
     }
     if (animFrame !== null) {
         var recursiveAnim = function() {
