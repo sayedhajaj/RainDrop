@@ -5,7 +5,7 @@ class Player extends Sprite {
         this.distance = 0;
         this.angle = 0;
         this.maxAngle = 45;
-        this.turnSpeed = 3;
+        this.turnSpeed = 2;
         this.speed = 3;
         this.maxSpeed = 5;
         this.calculateMatrix();
