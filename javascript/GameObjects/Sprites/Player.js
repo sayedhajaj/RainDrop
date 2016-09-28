@@ -60,10 +60,10 @@ class Player extends Sprite {
         var topMiddle = this.transform.transform(this.bounds.center.to3D());
         this.velocity.x = -Math.round(Math.multDec(this.speed, Math.sin(toRadians(this.angle))));
         this.velocity.y = Math.round(Math.multDec(this.speed, Math.cos(toRadians(this.angle))));
-        if (topMiddle.x + this.bounds.radius >= canvas.width*2) this.velocity.x = Math.min(0, this.velocity.x);
-        if (topMiddle.x <= this.bounds.radius) this.velocity.x = Math.max(0, this.velocity.x);
-        //if (topMiddle.x + this.bounds.radius >= canvas.width*2) this.setGameOver();
-        //if (topMiddle.x <= this.bounds.radius) this.setGameOver();
+        //if (topMiddle.x + this.bounds.radius >= canvas.width*2) this.velocity.x = Math.min(0, this.velocity.x);
+        //if (topMiddle.x <= this.bounds.radius) this.velocity.x = Math.max(0, this.velocity.x);
+        if (topMiddle.x + this.bounds.radius >= canvas.width*2) this.setGameOver();
+        if (topMiddle.x <= this.bounds.radius) this.setGameOver();
         super.update(timePassed);
         this.distance += this.velocity.y;
         this.speed += (this.distance > 0 && this.distance % (5 * mainGame.obstacleSpawner.getHeightGap()) === 0 && this.speed < this.maxSpeed) ? .1 : 0;

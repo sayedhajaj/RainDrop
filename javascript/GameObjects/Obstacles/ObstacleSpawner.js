@@ -57,7 +57,7 @@ class ObstacleSpawner {
     }
 
     getHeightGap() {
-        return canvas.height / 2;
+        return canvas.height / 1.5;
     }
 
     draw() {
