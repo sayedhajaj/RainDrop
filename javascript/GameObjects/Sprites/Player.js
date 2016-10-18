@@ -3,9 +3,10 @@ class Player extends Sprite {
         super(position, dimensions);
         this.sideOn = false;
         this.distance = 0;
+        this.score = 0;
         this.angle = 0;
         this.maxAngle = 45;
-        this.turnSpeed = 4;
+        this.turnSpeed = 2;
         this.speed = 3;
         this.defaultSpeed = 3;
         this.maxSpeed = 5;
@@ -31,6 +32,11 @@ class Player extends Sprite {
         var boundCenter = this.transform.transform(this.bounds.center.to3D());
         var tip = this.transform.transform(this.position.AddVector(new Vector2D(this.dimensions.x/2, 0)).to3D());
         for (var obstacle of obstacles) {
+            //console.log(boundCenter.y + ", " + obstacle.bounds.center.y);
+            if (!obstacle.reached && boundCenter.y >= obstacle.bounds.center.y) {
+                obstacle.reached = true;
+                //this.score++;
+            }
             if (obstacle.bounds.center.y > this.position.y + this.dimensions.y) break;
             if(
                 obstacle.bounds.center.SubtractVector(boundCenter).Length() <= obstacle.bounds.radius + this.bounds.radius ||

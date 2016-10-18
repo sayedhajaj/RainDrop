@@ -31,4 +31,4 @@ class Crack extends GameObject {
     }
 
 }
-Crack.SIZE = 120;
+Crack.SIZE = 90;

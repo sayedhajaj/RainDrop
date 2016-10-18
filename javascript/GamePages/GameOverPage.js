@@ -10,10 +10,10 @@ class GameOverPage extends GamePage {
         );
         this.highScore = mainGame.getHighScore();*/
         this.restartButton = new Button(
-            images["replay-button"], new Vector2D(30, 250), new Vector2D(100, 100), function(){lm.setLevelFromStart(0);}
+            images["replay-button"], new Vector2D(40, 270), new Vector2D(75, 75), function(){lm.setLevelFromStart(0);}
         );
         this.homeButton = new Button(
-            images["home-button"], new Vector2D(200, 250), new Vector2D(100, 100), function(){gpm.setPage(0);}
+            images["home-button"], new Vector2D(40, 180), new Vector2D(75, 75), function(){gpm.setPage(0);}
         );
 
     }
@@ -23,7 +23,11 @@ class GameOverPage extends GamePage {
         /*ctx.drawImage(images["white_translucent_box"], 10, 120, 340, 260);
         ctx.drawImage(images["gameovertext"], 30, 130, 310, 41);*/
         ctx.drawImage(images["white_translucent_box"], 10, 150, 340, 220);
-        ctx.drawImage(images["gameovertext"], 30, 200, 310, 41);
+        //ctx.drawImage(images["gameovertext"], 25, 180, 310, 41);
+        ctx.font = "37px junegull";
+        ctx.fillStyle = "grey";
+        ctx.textAlign = "left";
+        ctx.fillText("GAME OVER", 130, 205);
 
         this.restartButton.draw();
         this.homeButton.draw();

@@ -9,15 +9,16 @@ var sources = {
     "dewdropstext": "images/text/new_dew_drops_text.png",
     "gameovertext": "images/text/Game-Over.png",
 
-    "tapToPlay": "images/text/Tap-to-play.png",
-    "logo": "images/Deluge-Logo-2.png",
+    "tapToPlay": "images/text/Tap-to-play-shadow.png",
+    "logo": "images/Deluge-Logo-2-Curved-Shadow.png",
     "dewdrop": "images/Dew-Drop.png",
     "pause-button": "images/buttons/pause_button.png",
     "play-button": "images/buttons/play_button.png",
     "replay-button": "images/buttons/replay_icon.png",
     "home-button": "images/buttons/Home-icon.png",
 
-    "white_translucent_box": "images/white_translucent_box.png",
+    //"white_translucent_box": "images/white_translucent_box.png",
+    "white_translucent_box": "images/Menu-Box-w-Shadow.png",
 
     "0": "images/text/numbers/0.png",
     "1": "images/text/numbers/1.png",

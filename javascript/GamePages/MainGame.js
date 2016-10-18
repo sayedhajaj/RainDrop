@@ -5,7 +5,7 @@ class MainGame extends Level {
     constructor() {
         super();
         this.pauseButton = new Button(
-            images["pause-button"], new Vector2D(325, 10), new Vector2D(26, 31), function(){gpm.setPage(1);}
+            images["pause-button"], new Vector2D(315, 20), new Vector2D(26, 31), function(){gpm.setPage(1);}
         );
     }
 
@@ -37,6 +37,7 @@ class MainGame extends Level {
         var collisionIndex = this.coinSpawner.collide(player);
         if (collisionIndex > -1) player.collectDewDrop(this.coinSpawner, collisionIndex);
 
+        //this.score = player.score;
         this.score = Math.floor(player.distance/(this.obstacleSpawner.getHeightGap()));
         this.cameraScroll();
         camera.update();
@@ -67,7 +68,7 @@ class MainGame extends Level {
 
     	player.draw();
         camera.resetContextTransform();
-        ctx.drawImage(images["highScore"], 10, 10, 110, 15);
+        /*ctx.drawImage(images["highScore"], 10, 10, 110, 15);
         var numbers = getNumberImages(Math.max(mainGame.highScore, this.score));
         for (var i = 0; i < numbers.length; i++) {
             ctx.drawImage(numbers[i], 125 + (i*15), 10, 15, 15);
@@ -75,7 +76,15 @@ class MainGame extends Level {
         numbers = getNumberImages( this.score);
         for (var i = 0; i < numbers.length; i++) {
             ctx.drawImage(numbers[i], 125 + (i*15), 30, 15, 15);
-        }
+        }*/
+
+        ctx.font = "20px junegull";
+        ctx.fillStyle = "grey";
+        ctx.textAlign = "left";
+        ctx.fillText("HI-SCORE: " + Math.max(mainGame.highScore, this.score), 10, 30);
+        if(this.score > mainGame.highScore) ctx.fillStyle = "#d4af37";
+        ctx.fillText("SCORE: " + this.score, 36, 50);
+
 
         this.pauseButton.draw();
 
