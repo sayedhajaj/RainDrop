@@ -10,8 +10,8 @@ class HomePage extends GamePage {
     draw() {
         ctx.drawImage(images["background"], 0, 0, 360, 480);
 
-        ctx.font = "20px junegull";
-        ctx.fillStyle = "grey";
+        ctx.font = "bold 20px junegull";
+        ctx.fillStyle = "darkblue";
         ctx.textAlign = "left";
         ctx.fillText("HI-SCORE: " + mainGame.highScore, 10, 30);
         //ctx.drawImage(images["highScore"], 10, 10, 110, 15);
@@ -27,11 +27,11 @@ class HomePage extends GamePage {
         for (var i = numbers.length -1; i >= 0; i--) {
             ctx.drawImage(numbers[i], 325 - ((numbers.length-i)*15), 10, 15, 15);
         }*/
-        ctx.font = "22px junegull";
-        ctx.fillStyle = "grey";
-        ctx.textAlign = "left";
+        ctx.font = "bold 22px junegull";
+        ctx.fillStyle = "darkblue";
+        ctx.textAlign = "right";
         //ctx.fillText(mainGame.highScore, 125, 25);
-        ctx.fillText(getDewDrops(), 310, 30);
+        ctx.fillText(getDewDrops(), 322, 30);
     }
 
     handleKeyInput(keyup) {

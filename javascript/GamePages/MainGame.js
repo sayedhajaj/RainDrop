@@ -78,8 +78,8 @@ class MainGame extends Level {
             ctx.drawImage(numbers[i], 125 + (i*15), 30, 15, 15);
         }*/
 
-        ctx.font = "20px junegull";
-        ctx.fillStyle = "grey";
+        ctx.font = "bold 20px junegull";
+        ctx.fillStyle = "darkblue";
         ctx.textAlign = "left";
         ctx.fillText("HI-SCORE: " + Math.max(mainGame.highScore, this.score), 10, 30);
         if(this.score > mainGame.highScore) ctx.fillStyle = "#d4af37";
@@ -98,10 +98,10 @@ class MainGame extends Level {
 
     handleKeyInput(keyup) {
         if(keyup){
-            if (keystate[f])
-                requestFullScreen();
+            if (keystate[f]) requestFullScreen();
 
             if (keystate[p]) gpm.setPage(1);
+
             player.handleKeyInput(true);
 
     	} else {

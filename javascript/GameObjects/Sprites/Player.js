@@ -73,7 +73,7 @@ class Player extends Sprite {
         if (topMiddle.x <= this.bounds.radius) this.setGameOver();
         super.update(timePassed);
         this.distance += this.velocity.y;
-        this.speed += (this.distance > 0 && this.distance % (5 * mainGame.obstacleSpawner.getHeightGap()) === 0 && this.speed < this.maxSpeed) ? .1 : 0;
+        this.speed += (this.distance > 0 && this.distance % (5 * mainGame.obstacleSpawner.getHeightGap()) === 0 && this.speed < this.maxSpeed) ? .2 : 0;
         if(this.velocity.Length() != 0) this.calculateMatrix();
         if(Math.abs(this.angle+this.turnSpeed) <= this.maxAngle) {
             this.angle += this.turnSpeed;
