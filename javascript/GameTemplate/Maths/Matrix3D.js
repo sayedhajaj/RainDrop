@@ -184,14 +184,3 @@ class Matrix3D extends Matrix2D {
 	}
 
 }
-
-var matrix = new Matrix3D();
-matrix.setRow(new Vector3D(2, -1, 1), 0);
-matrix.setRow(new Vector3D(1, 2, 3), 1);
-matrix.setRow(new Vector3D(0, 1, 2), 2);
-//console.log(matrix.getCoFactorMatrix().elements);
-/*console.log(Matrix3D.Multiply(
-	Matrix3D.translation(new Vector2D(200, 2000)),
-	Matrix3D.translation(new Vector2D(200, 2000)).getInverse()
-).elements);
-*/
