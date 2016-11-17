@@ -12,7 +12,7 @@ class PlayerState {
         if(keyup){
             if(keystate[up] || keystate[down] || keystate[left] || keystate[right] || keystate[space]) {
                 player.changeDirection();
-                //return new CrazyState();
+                return new CrazyState();
             }
         } else {
 
