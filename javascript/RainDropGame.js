@@ -62,7 +62,7 @@ function getNumberImages(num) {
 }
 
 function addDewDrops(num) {
-	localStorage.setItem(gameTitle + "dewdrops", getDewDrops()+num);
+	localStorage.setItem(gameTitle + "dewdrops", parseInt(getDewDrops())+num);
 }
 
 function getDewDrops()  {
@@ -73,5 +73,5 @@ function getDewDrops()  {
 }
 
 function spendDewDrops(num) {
-	localStorage.setItem(gameTitle + "dewdrops", getDewDrops()-num);
+	localStorage.setItem(gameTitle + "dewdrops", Math.max(parseInt(getDewDrops())-num), 0);
 }

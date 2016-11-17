@@ -53,6 +53,7 @@ class Player extends Sprite {
 
     collectDewDrop(spawner, index) {
         spawner.coins.splice(index, 1 );
+        addDewDrops(1);
     }
 
     handleKeyInput(keyup) {
